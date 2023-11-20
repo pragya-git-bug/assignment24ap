@@ -1,0 +1,159 @@
+Assignment 24th April 1
+
+Answer1
+package sortingAssignment;
+
+import java.util.Arrays;
+
+//Write a program to sort an array in descending order using bubble sort.
+public class Q1 {
+	public static void main(String[] args) {
+		int a[] = {3,5,1,6,0};
+		doBubbleSort(a);
+		System.out.println("Sorted array in decending order :");
+		System.out.println(Arrays.toString(a));
+	}
+
+	private static void doBubbleSort(int[] a) {
+		for (int i = 0; i < a.length; i++) {
+			boolean isSwapped = false;
+			for (int j = 0; j < a.length-i-1; j++) {
+				if (a[j]<a[j+1]) {
+					int temp = a[j];
+					a[j]=a[j+1];
+					a[j+1]=temp;
+					isSwapped=true;
+				}
+			}
+			if (!isSwapped) {
+				break;
+			}
+		}
+	}
+}
+
+Answer2
+package sortingAssignment;
+
+import java.util.Arrays;
+
+//WAP to sort an array in decending order using selection sort
+public class Q2 {
+	public static void main(String[] args) {
+		int a[] = { 3, 5, 1, 6, 0 };
+		doSelectionSort(a);
+		System.out.println("Sorted array in decending order : ");
+		System.out.println(Arrays.toString(a));
+	}
+
+	private static void doSelectionSort(int[] a) {
+		for (int i = 0; i < a.length-1; i++) {
+			int maxIndex = i;
+			for (int j = i + 1; j < a.length; j++) {
+				if (a[j] > a[maxIndex]) {
+					maxIndex = j;
+				}
+			}
+
+			if (maxIndex != i) {
+				int temp = a[maxIndex];
+				a[maxIndex] = a[i];
+				a[i] = temp;
+			}
+		}
+	}
+}
+
+Answer3
+package sortingAssignment;
+
+import java.util.Arrays;
+
+//WAP to sort an array in decreasing order using insertion sort
+public class Q3 {
+	public static void main(String[] args) {
+		int a[] = { 3, 5, 1, 6, 0 };
+		System.out.println("Sorted array decreasing order : ");
+		doInsertionSort(a);
+		System.out.println(Arrays.toString(a));
+	}
+
+	private static void doInsertionSort(int[] a) {
+		for (int i = 1; i < a.length; i++) {
+			int j=i;
+			while (j>0 && a[j] > a[j-1]) {
+				int temp = a[j];
+				a[j]=a[j-1];
+				a[j-1]=temp;
+				j--;
+			}
+		}
+	}
+}
+
+Answer4
+package sortingAssignment;
+
+/*Find out how many pass would be required to sort the following array in decreasing order
+using bubble sort*/
+public class Q4 {
+	public static void main(String[] args) {
+		int a[] = { 3, 5, 1, 6, 0 };
+		System.out.println("No of passes required to sort :");
+		int result = doBubbleSort(a);
+		System.out.println(result);
+	}
+
+	private static int doBubbleSort(int[] a) {
+		int passes = 0;
+		for (int i = 0; i < a.length-1; i++) {
+			boolean isSwapped = false;
+			for (int j = 0; j < a.length - 1 - i; j++) {
+				if (a[j] > a[j + 1]) {
+					int temp = a[j];
+					a[j] = a[j + 1];
+					a[j + 1] = temp;
+					isSwapped=true;
+				}
+			}
+			passes++;
+			if (!isSwapped) {
+				break;
+			}
+		}
+		return passes;
+	}
+}
+
+Answer5
+package sortingAssignment;
+
+/*Find out the number of iterations to sort the array in descending order using selection sort.*/
+public class Q5 {
+	public static void main(String[] args) {
+		int a[] = { 3, 5, 1, 6, 0 };
+		System.out.println("No of passes required to sort :");
+		int result = doSelectionSort(a);
+		System.out.println(result);
+	}
+
+	private static int doSelectionSort(int[] a) {
+		int passes = 0;
+		for (int i = 0; i < a.length - 1; i++) {
+			int minIndex = i;
+			for (int j = i + 1; j < a.length; j++) {
+				if (a[j] < a[minIndex]) {
+					minIndex = j;
+				}
+			}
+			if (minIndex != i) {
+				int temp = a[minIndex];
+				a[minIndex] = a[i];
+				a[i] = temp;
+			}
+			passes++;
+		}
+		return passes;
+	}
+	
+}
